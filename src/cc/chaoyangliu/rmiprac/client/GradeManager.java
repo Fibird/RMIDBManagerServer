@@ -2,7 +2,8 @@ package cc.chaoyangliu.rmiprac.client;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.rmi.RemoteException;
+import java.net.MalformedURLException;
+import java.rmi.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -48,6 +49,19 @@ public class GradeManager extends JFrame {
 		try {
 			ds.connDataBase(u, p, d);
 		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			ds = (DataService) Naming.lookup("//localhost:1235/ds");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

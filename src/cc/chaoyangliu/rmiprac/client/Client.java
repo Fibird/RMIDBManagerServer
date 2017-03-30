@@ -9,14 +9,15 @@ import javax.swing.JOptionPane;
  * Launch the application.
  */
 public class Client {
-
+	static ReturnValues value = new ReturnValues();
+	static String dbn;
 	public Client() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ReturnValues value = new ReturnValues();
+		
 		Login lg = new Login();
 		try {
 			lg.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -25,21 +26,14 @@ public class Client {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		 
+		//dbn = JOptionPane.showInputDialog("请输入所用数据库名！");
 		if (value.btnValue) {
-			
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						GradeManager frame = new GradeManager();
-						frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
-		} else {
-			JOptionPane.showConfirmDialog(null, "确定要退出吗？");
+			//GradeManager frame = new GradeManager();
+			//frame.setVisible(true);					
+			//frame.setDs(value.usr, value.pwd, dbn);
 		}
+		
 	}
 
 }
