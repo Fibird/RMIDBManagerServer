@@ -2,14 +2,18 @@ package cc.chaoyangliu.rmiprac.client;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import cc.chaoyangliu.rmiprac.service.DataService;
+
 public class GradeManager extends JFrame {
 
 	private JPanel contentPane;
+	public DataService ds; 
 
 	/**
 	 * Launch the application.
@@ -31,6 +35,7 @@ public class GradeManager extends JFrame {
 	 * Create the frame.
 	 */
 	public GradeManager() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -38,5 +43,13 @@ public class GradeManager extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 	}
-
+	
+	public void setDs(String u, String p, String d) {
+		try {
+			ds.connDataBase(u, p, d);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
