@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import cc.chaoyangliu.rmiprac.service.DataService;
+import cc.chaoyangliu.rmiprac.service.DataServiceImpl;
 
 public class GradeManager extends JFrame {
 
@@ -36,7 +37,12 @@ public class GradeManager extends JFrame {
 	 * Create the frame.
 	 */
 	public GradeManager() {
-		
+		try {
+			ds = new DataServiceImpl();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
