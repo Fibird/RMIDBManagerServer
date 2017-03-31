@@ -4,6 +4,7 @@
 package cc.chaoyangliu.rmiprac.service;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -99,11 +100,12 @@ public class DBManager {
 	 * 录入成绩
 	 * 参数：姓名、学号、成绩
 	 */
-	public Boolean addGrade(String n, String id, int g) {
-		String addSql = "insert into grade values (?, ?, ?)";
+	public Boolean addGrade(String tn, String n, String id, int g) {
+		String addSql = "insert into " + tn + " values (?, ?, ?)";
 		PreparedStatement psAdd = null;
 		try {
 			psAdd = conn.prepareStatement(addSql);
+			//psAdd.setString(1, tn);
 			psAdd.setString(1, n);
 			psAdd.setString(2, id);
 			psAdd.setInt(3, g);
@@ -122,14 +124,15 @@ public class DBManager {
 	 * 查询成绩
 	 * 参数：学号
 	 */
-	public int queryGrade(String id)
+	public int queryGrade(String tn, String id)
 	{
 		int grade = 0;
-		String Querysql = "select grade from " + tableName + " where id=?";
+		String Querysql = "select grade from " + tn +" where id=?";
 		PreparedStatement psQuery = null;
 		ResultSet rs = null;
 		try {
 			psQuery = conn.prepareStatement(Querysql);
+			//psQuery.setString(1, tn);
 			psQuery.setString(1, id);
 			rs = psQuery.executeQuery();
 			if (rs.next())
@@ -142,6 +145,26 @@ public class DBManager {
 		} finally {
 			DBManager.freeRsSt(rs, psQuery);
 		}
+	}
+	
+	public ArrayList<String> getTables() {
+		String showTablesSql = "show tables";
+		ResultSet rs = null;
+		ArrayList<String> tables = new ArrayList<>();
+		try {
+			Statement showTables = conn.createStatement();
+			rs = showTables.executeQuery(showTablesSql);
+			
+			while (rs.next()) {
+				tables.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return tables;
 	}
 	/*
 	 * 释放结果集对象和预编译语句对象
