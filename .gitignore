@@ -59,4 +59,7 @@ local.properties
 .scala_dependencies
 .worksheet
 
+# jar packages
+*.jar
+
 # End of https://www.gitignore.io/api/eclipse
