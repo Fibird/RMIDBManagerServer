@@ -4,6 +4,7 @@
 package cc.chaoyangliu.rmiprac.service;
 
 import java.rmi.server.*;
+import java.util.ArrayList;
 import java.rmi.*;
 
 /**
@@ -40,18 +41,18 @@ public class DataServiceImpl extends UnicastRemoteObject implements DataService 
 	 * @see cc.chaoyangliu.rmiprac.service.DataService#QueryGrade(java.lang.String)
 	 */
 	@Override
-	public int queryGrade(String id) throws RemoteException {
+	public int queryGrade(String tn, String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return dbm.queryGrade(id);
+		return dbm.queryGrade(tn, id);
 	}
 
 	/* (non-Javadoc)
 	 * @see cc.chaoyangliu.rmiprac.service.DataService#addGrade(java.lang.String, java.lang.String, int)
 	 */
 	@Override
-	public Boolean addGrade(String n, String id, int g) throws RemoteException {
+	public Boolean addGrade(String tn, String n, String id, int g) throws RemoteException {
 		// TODO Auto-generated method stub
-		return dbm.addGrade(n, id, g);
+		return dbm.addGrade(tn, n, id, g);
 	}
 
 	/* (non-Javadoc)
@@ -61,6 +62,12 @@ public class DataServiceImpl extends UnicastRemoteObject implements DataService 
 	public void free() throws RemoteException {
 		// TODO Auto-generated method stub
 		dbm.disConn();
+	}
+
+	@Override
+	public ArrayList<String> showTables() throws RemoteException {
+		// TODO Auto-generated method stub
+		return dbm.getTables();
 	}
 
 }
