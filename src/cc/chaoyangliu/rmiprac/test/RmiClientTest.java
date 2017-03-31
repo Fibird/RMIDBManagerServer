@@ -6,7 +6,7 @@ package cc.chaoyangliu.rmiprac.test;
 import java.rmi.*;
 import java.util.*;
 
-import cc.chaoyangliu.rmiprac.service.DataService;
+//import cc.chaoyangliu.rmiprac.service.DataService;
 
 /**
  * @author bird

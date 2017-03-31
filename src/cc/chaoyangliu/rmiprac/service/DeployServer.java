@@ -28,7 +28,7 @@ public class DeployServer {
 			// 远程对象绑定到服务
 			Naming.rebind("//localhost:1235/ds", ds);
 
-			System.out.println("RMI服务器正在运行。。。。。。");
+			System.out.println("RMI Server Running ...");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

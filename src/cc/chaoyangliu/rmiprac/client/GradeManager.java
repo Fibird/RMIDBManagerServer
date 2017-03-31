@@ -9,13 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import cc.chaoyangliu.rmiprac.service.DataService;
-import cc.chaoyangliu.rmiprac.service.DataServiceImpl;
+//import cc.chaoyangliu.rmiprac.service.DataService;
+//import cc.chaoyangliu.rmiprac.service.DataServiceImpl;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
@@ -25,6 +21,10 @@ import java.awt.event.ActionEvent;
 
 public class GradeManager extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5548075107565345023L;
 	private JPanel contentPane;
 	public DataService ds; 
 	private JTextField TableNameTextField;
@@ -67,12 +67,12 @@ public class GradeManager extends JFrame {
 	 */
 	public GradeManager() {
 		setTitle("Grade Manager");
-		try {
-			ds = new DataServiceImpl();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			ds = new DataServiceImpl();
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 682);
 		contentPane = new JPanel();
@@ -90,6 +90,17 @@ public class GradeManager extends JFrame {
 		TableNameTextField.setColumns(10);
 		
 		CreateTableButton = new JButton("Create Table");
+		CreateTableButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String TableName = TableNameTextField.getText();
+				try {
+					ds.createTable(TableName);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		CreateTableButton.setBounds(149, 88, 136, 23);
 		contentPane.add(CreateTableButton);
 		
@@ -173,12 +184,6 @@ public class GradeManager extends JFrame {
 	}
 	
 	public void setDs(String u, String p, String d) {
-		try {
-			ds.connDataBase(u, p, d);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		try {
 			ds = (DataService) Naming.lookup("//localhost:1235/ds");
@@ -192,5 +197,14 @@ public class GradeManager extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+//		try {
+//			ds.connDataBase(u, p, d);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
 	}
 }

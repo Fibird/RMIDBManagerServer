@@ -18,13 +18,13 @@ public class DataServiceImpl extends UnicastRemoteObject implements DataService 
 	 */
 	public DataServiceImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
-		super();
-		dbm = new DBManager();		
+		super();	
+		dbm = new DBManager();
 	}
 
 	@Override
 	public Boolean connDataBase(String usr, String pwd, String dbn) throws RemoteException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub	
 		return dbm.connDataBase(usr, pwd, dbn);
 	}
 	/* (non-Javadoc)
